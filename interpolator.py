@@ -3,12 +3,12 @@ def get_table():
 
 
 # table: dict {x0 : f(x0)}
-def LagrangeInterpolation(table, x):
+def LagrangeInterpolation(table, x, n):
     pass
 
 
 # table: dict {x0 : f(x0)}
-def NewtonInterpolation(table, x):
+def NewtonInterpolation(table, x, n):
     pass
 
 
