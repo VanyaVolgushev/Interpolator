@@ -8,7 +8,7 @@ def get_table(a, b, m, func):
 
 
 def sort_table(table):
-    table_sorted = {k: v for k, v in sorted(table.items(), key=lambda item: abs(item[1] - x))}
+    table_sorted = {k: v for k, v in sorted(table.items(), key=lambda item: abs(item[0] - x))}
     table_sorted_keys = list(table_sorted.keys())
     table_new = {}
     i = 0
@@ -46,14 +46,15 @@ def LagrangeInterpolation(table, x, n):
     return res
 
 
-#get divided differences
+# get divided differences
 def GetDiv(table, arguments):
     if len(arguments) == 2:
-        return (table[arguments[1]] - table[arguments[0]])/(arguments[1] - arguments[0])
-    else :
+        return (table[arguments[1]] - table[arguments[0]]) / (arguments[1] - arguments[0])
+    else:
         numOfArguments = len(arguments)
-        return (GetDiv(table, arguments[1 : numOfArguments]) - GetDiv(table, arguments[0 : numOfArguments - 1]))/(
-            arguments[numOfArguments - 1] - arguments[0])
+        return (GetDiv(table, arguments[1: numOfArguments]) - GetDiv(table, arguments[0: numOfArguments - 1])) / (
+                arguments[numOfArguments - 1] - arguments[0])
+
 
 # table: dict {x0 : f(x0)}
 def NewtonInterpolation(table, x, n):
@@ -69,10 +70,11 @@ def NewtonInterpolation(table, x, n):
             continue
 
         rightMultiplicant *= (x - arguments[pairIndex - 1])
-        leftMultiplicant = GetDiv(table, arguments[0 : pairIndex + 1])
+        leftMultiplicant = GetDiv(table, arguments[0: pairIndex + 1])
         result += leftMultiplicant * rightMultiplicant
         pairIndex += 1
     return result
+
 
 if __name__ == "__main__":
     print("Задача алгебраического интерполирования\n"
